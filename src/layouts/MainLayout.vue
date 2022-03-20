@@ -44,14 +44,14 @@ import EssentialLink from "components/EssentialLink.vue";
 import SqlyogDownloadLink from "components/SqlyogDownloadLink.vue";
 
 import { defineComponent, ref, onMounted } from "vue";
-import axios from "axios";
+import { linkParse } from "../js/link.parser";
 
 const linksList = [
   {
     title: "Github",
-    caption: "github.com/rxcats/sqlyog-downloader-pages",
+    caption: "github.com/rxcats/sqlyog-download-pages",
     icon: "code",
-    link: "https://github.com/rxcats/sqlyog-downloader-pages",
+    link: "https://github.com/rxcats/sqlyog-download-pages",
   }
 ];
 
@@ -67,17 +67,16 @@ export default defineComponent({
     const sqlyogDownloadLinks = ref([]);
 
     onMounted(() => {
-      axios.get('https://apps-rxcats.duckdns.org/sqlyog/sqlyog.json')
-        .then(response => {
-          sqlyogDownloadLinks.value = response.data.map(v => {
-            return {
-              caption: v,
-              title: v,
-              icon: "code",
-              link: v
-            }
-          });
+      linkParse().then(data => {
+        sqlyogDownloadLinks.value = data.map(v => {
+          return {
+            caption: v.link,
+            title: v.filename,
+            icon: "code",
+            link: v.link
+          }
         });
+      });
     });
 
     return {
