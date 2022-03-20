@@ -4,8 +4,8 @@ import _ from "underscore";
 
 const REGEX = /([^/])+/g;
 const URL_PREFIX = 'https://static.webyog.com/downloads/F798CFA0-C130-4ABB-B94A-5C4CC49CD29A';
-const TARGET_PAGE = 'https://github.com/webyog/sqlyog-community/wiki/Downloads';
-// const tmp = 'https://apps-rxcats.duckdns.org/sqlyog/download.html';
+//const TARGET_PAGE = 'https://github.com/webyog/sqlyog-community/wiki/Downloads';
+const TARGET_PAGE = 'https://apps-rxcats.duckdns.org/sqlyog/download.html';
 
 const linkParse = () => {
   return new Promise((resolve, reject) => {
